@@ -45,7 +45,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
 }
 
 getRepoContributors(first, second, function(err, result) {
-  if (second !== true) {
+  if (second === undefined) {
     console.log("Error, second parameter required.")
   }
   // console.log("Errors:", err);
