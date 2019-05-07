@@ -32,7 +32,8 @@ function getRepoContributors(repoOwner, repoName, cb) {
   });
 }
 
-function downloadImageByURL(url, filePath) {
+
+  function downloadImageByURL(url, filePath) {
   request.get(url)
 
   .on('error', function (err) {
@@ -44,6 +45,9 @@ function downloadImageByURL(url, filePath) {
 }
 
 getRepoContributors(first, second, function(err, result) {
+  if (second !== true) {
+    console.log("Error, second parameter required.")
+  }
   // console.log("Errors:", err);
   // console.log("Result:", result);
 
