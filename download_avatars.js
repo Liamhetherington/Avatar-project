@@ -16,8 +16,14 @@ function getRepoContributors(repoOwner, repoName, cb) {
   request(options, function(err, res, body) {
     var parsedBody = JSON.parse(body);
     cb(err, parsedBody);
+
     for (var i =0; i < parsedBody.length; i++) {
-      console.log(parsedBody[i].avatar_url); //iterates through parsed body(array of objects)
+      var avatarUrl = parsedBody[i].avatar_url;
+      var login = parsedBody[i].login;
+      console.log("Avatar: " + avatarUrl);
+      console.log("Login: " + login);
+      downloadImageByURL(avatarUrl, "avatars/" + login +  ".jpg")
+      // console.log(parsedBody[i].avatar_url); //iterates through parsed body(array of objects)
                                             //and pushes it to the index
     }
   });
@@ -38,5 +44,5 @@ getRepoContributors("jquery", "jquery", function(err, result) {
   // console.log("Errors:", err);
   // console.log("Result:", result);
 
-downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "avatars/kvirani.jpg")
+// downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "avatars/kvirani.jpg")
 });
