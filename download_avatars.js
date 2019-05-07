@@ -2,6 +2,9 @@ var request = require('request');
 var fs = require('fs');
 var token = require('./secrets').GITHUB_TOKEN;
 
+var first = process.argv[2];
+var second = process.argv[3];
+
 console.log('Welcome to the Github Avatar Downloader!');
 
 function getRepoContributors(repoOwner, repoName, cb) {
@@ -22,7 +25,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
       var login = parsedBody[i].login;
       console.log("Avatar: " + avatarUrl);
       console.log("Login: " + login);
-      downloadImageByURL(avatarUrl, "avatars/" + login +  ".jpg")
+      downloadImageByURL(avatarUrl, "avatars/" + login + ".jpg")
       // console.log(parsedBody[i].avatar_url); //iterates through parsed body(array of objects)
                                             //and pushes it to the index
     }
@@ -40,7 +43,7 @@ function downloadImageByURL(url, filePath) {
 
 }
 
-getRepoContributors("jquery", "jquery", function(err, result) {
+getRepoContributors(first, second, function(err, result) {
   // console.log("Errors:", err);
   // console.log("Result:", result);
 
